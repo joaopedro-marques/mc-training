@@ -1,0 +1,23 @@
+POST http://localhost:5018/todos
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "WriteBook",
+  "dueDate": "2026-12-31",
+  "isCompleted": true
+}
+
+###
+GET http://localhost:5018/todos
+###
+
+GET http://localhost:5018/todos/2
+
+###
+
+DELETE http://localhost:5018/todos/2
+
+###
+
+GET http://localhost:5018/taks/12
