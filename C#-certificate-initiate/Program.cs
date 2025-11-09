@@ -99,3 +99,84 @@ Console.WriteLine($@" View English output:
 string russianMessage = "\u041f\u043e\u0441\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u0440\u0443\u0441\u0441\u043a\u0438\u0439 \u0432\u044b\u0432\u043e\u0434";
 Console.WriteLine($@"{russianMessage}
   C:\Exercise\{projectName}\ru-RU\data.txt");
+
+Console.WriteLine("----------------");
+Console.WriteLine("Performing addiction with implicit type conversions");
+int firstNumber = 12;
+int secondNumber = 7;
+Console.WriteLine(firstNumber + secondNumber);
+firstName = "Bob";
+int widgetsSold = 7;
+Console.WriteLine(firstName + " sold " + widgetsSold + 7 + " widgets.");
+Console.WriteLine(firstName + " sold " + (widgetsSold + 7) + " widgets.");
+
+Console.WriteLine("----------------");
+Console.WriteLine("PERFORMING MATH OPERATIONS");
+int sum = 7 + 5;
+int difference = 7 - 5;
+int product = 7 * 5;
+int quotient = 7 / 5;
+
+Console.WriteLine("Sum: " + sum);
+Console.WriteLine("Difference: " + difference);
+Console.WriteLine("Product: " + product);
+Console.WriteLine("Quotient: " + quotient);
+
+decimal decimalQuotient = 7.0m / 5;
+Console.WriteLine($"Decimal Quotient: {decimalQuotient}");
+
+int first = 7;
+int second = 5;
+decimal castingQuotient = (decimal)first / (decimal)second;
+
+Console.WriteLine($"Quotient: {castingQuotient}");
+Console.WriteLine($"Modulus of 200/5 : {200 % 5}");
+Console.WriteLine($"Modulus of 7/5 : {first % second}");
+
+int value1 = 3 + 4 * 5;
+int value2 = (3 + 4) * 5;
+Console.WriteLine(value1);
+Console.WriteLine(value2);
+
+Console.WriteLine("----------------");
+Console.WriteLine("INCREMENT AND DECREMENT OPERATORS");
+int value = 0;
+value = value + 5;
+value += 5;
+value = 0;
+value = value + 1;
+value++;
+
+
+value = 1;
+value = value + 1;
+Console.WriteLine("First increment" + value);
+
+value += 1;
+Console.WriteLine("Second increment" + value);
+
+value++;
+Console.WriteLine("Third increment" + value);
+
+value = value - 1;
+Console.WriteLine("First decrement" + value);
+
+value -= 1;
+Console.WriteLine("Second decrement" + value);
+
+value--;
+Console.WriteLine("Third decrement" + value);
+
+value = 1;
+value++;
+Console.WriteLine("First: " + value);
+Console.WriteLine($"Second: {value++}");
+Console.WriteLine("Thirds: " + value);
+Console.WriteLine("Fourth: " + (++value));
+
+Console.WriteLine("----------------");
+Console.WriteLine("Fahrenheit to Celsius challenge");
+
+int fahrenheit = 94;
+decimal celsius = (fahrenheit - 32) * (5.0m / 9.0m);
+Console.WriteLine($"The temperature is {celsius} Celsius.");
