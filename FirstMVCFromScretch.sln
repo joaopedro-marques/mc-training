@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoGameApi", "VideoGameAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQTutorial", "LINQTutorial\LINQTutorial.csproj", "{11CDA612-3413-4F06-9EC5-633B92A79708}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C#-certificate-initiate", "C#-certificate-initiate\C#-certificate-initiate.csproj", "{D09F94E4-D87A-4225-9F7B-E2F562953093}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{11CDA612-3413-4F06-9EC5-633B92A79708}.Release|x64.Build.0 = Release|Any CPU
 		{11CDA612-3413-4F06-9EC5-633B92A79708}.Release|x86.ActiveCfg = Release|Any CPU
 		{11CDA612-3413-4F06-9EC5-633B92A79708}.Release|x86.Build.0 = Release|Any CPU
+		{D09F94E4-D87A-4225-9F7B-E2F562953093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D09F94E4-D87A-4225-9F7B-E2F562953093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D09F94E4-D87A-4225-9F7B-E2F562953093}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D09F94E4-D87A-4225-9F7B-E2F562953093}.Debug|x64.Build.0 = Debug|Any CPU
+		{D09F94E4-D87A-4225-9F7B-E2F562953093}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D09F94E4-D87A-4225-9F7B-E2F562953093}.Debug|x86.Build.0 = Debug|Any CPU
+		{D09F94E4-D87A-4225-9F7B-E2F562953093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D09F94E4-D87A-4225-9F7B-E2F562953093}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D09F94E4-D87A-4225-9F7B-E2F562953093}.Release|x64.ActiveCfg = Release|Any CPU
+		{D09F94E4-D87A-4225-9F7B-E2F562953093}.Release|x64.Build.0 = Release|Any CPU
+		{D09F94E4-D87A-4225-9F7B-E2F562953093}.Release|x86.ActiveCfg = Release|Any CPU
+		{D09F94E4-D87A-4225-9F7B-E2F562953093}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
