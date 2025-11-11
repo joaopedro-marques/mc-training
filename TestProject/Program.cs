@@ -24,3 +24,10 @@ int largervalue;
 
 largervalue = Math.Max(firstValue, secondValue);
 Console.WriteLine(largervalue);
+
+Console.WriteLine("------------");
+Console.WriteLine("Desafio");
+Random number = new();
+int number1 = number.Next(1, 101);
+
+Console.WriteLine($"Esse foi o número: {number1} e essa a raiz quadrada: {Math.Sqrt(number1):F2}");
