@@ -243,3 +243,4 @@ string finalPhrase = new String(lettersPhrase);
 
 Console.WriteLine(finalPhrase);
 Console.WriteLine($"'o' appears {letterCount} times.");
+
