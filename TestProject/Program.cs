@@ -148,8 +148,98 @@ Console.WriteLine("------------");
 Console.WriteLine("Challenge array interaction");
 
 string[] orders = ["B123", "C234", "A345", "C15", "B177", "G3003", "C235", "B179"];
-foreach(string order in orders)
+foreach (string order in orders)
 {
   if (order.StartsWith('B'))
     Console.WriteLine(order);
 }
+
+Console.WriteLine("-------------------");
+Console.WriteLine("Training comments");
+
+/*
+string firstName = "Bob";
+int widgetsPurchased = 7;
+Console.WriteLine($"{firstName} purchased {widgetsPurchased} widgets");
+*/
+
+/*
+The following code creates five randoms OrderIds
+to test the faurd detection process. OrderIDs consist
+of a latter from A to E, and a three 
+digit number. Ex:A123.
+*/
+Random random1 = new Random();
+string[] orderIds2 = new string[5];
+for (int i = 0; i < orderIds2.Length; i++)
+{
+    int prefixValue = random.Next(65, 70);
+    string prefix = Convert.ToChar(prefixValue).ToString();
+    string suffix = random.Next(1, 1000).ToString("000");
+    orderIds2[i] = prefix + suffix;
+}
+foreach (var orderID in orderIds2)
+{
+  Console.WriteLine(orderID);
+}
+
+Console.WriteLine("------------");
+Console
+.
+WriteLine(
+  "Hello Example 1!"
+)
+  ;
+
+string firstWord="Hello";string lastWord="Example 2";Console.WriteLine(firstWord+" "+lastWord+"!");
+
+Console.WriteLine("--------");
+
+Random dice2 = new Random();
+
+int roll4 = dice.Next(1, 7);
+int roll5 = dice.Next(1, 7);
+int roll6 = dice.Next(1, 7);
+int roll7 = dice.Next(1, 7);
+
+int total2 = roll4 + roll5 + roll6;
+Console.WriteLine($"Dice roll: {roll4} + {roll5} + {roll6} = {total}");
+
+if ((roll4 == roll5) || (roll5 == roll3) || (roll4 == roll3))
+{
+  if ((roll4 == roll2) && (roll5 == roll3))
+  {
+    Console.WriteLine("You rolled triples!  +6 bonus to total!");
+    total2 += 6;
+  }
+  else
+  {
+    Console.WriteLine("You rolled doubles!  +2 bonus to total!");
+    total2 += 2;
+  }
+}
+Console.WriteLine("-----------------");
+Console.WriteLine("Challenge redeability");
+/*
+This code try to revese and find in a phrase how many time the character
+'o' appears. 
+*/
+string initialPhrase = "The quick brown fox jumps over the lazy dog.";
+
+char[] lettersPhrase = initialPhrase.ToCharArray();
+Array.Reverse(lettersPhrase);
+
+int letterCount = 0;
+
+foreach (char letter in lettersPhrase)
+{
+  if (letter == 'o') 
+  {
+    letterCount++; 
+  }
+}
+
+string finalPhrase = new String(lettersPhrase);
+
+Console.WriteLine(finalPhrase);
+Console.WriteLine($"'o' appears {letterCount} times.");
