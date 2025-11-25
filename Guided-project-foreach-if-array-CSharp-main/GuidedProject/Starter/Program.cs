@@ -10,7 +10,7 @@ int[] loganScores = new int[] { 90, 95, 87, 88, 96, 96 };
 int[] beckyScores = new int[] { 92, 91, 90, 91, 92, 92, 92 };
 int[] chrisScores = new int[] { 84, 86, 88, 90, 92, 94, 96, 98 };
 int[] ericScores = new int[] { 80, 90, 100, 80, 90, 100, 80, 90 };
-int[] gregorScores = new int[] { 91, 91, 91, 91, 91, 91, 91 };    
+int[] gregorScores = new int[] { 91, 91, 91, 91, 91, 91, 91 };
 
 // Student names
 string[] studentNames = new string[] { "Sophia", "Andrew", "Emma", "Logan", "Becky", "Chris", "Eric", "Gregor" };
@@ -19,7 +19,7 @@ int[] studentScores = new int[10];
 
 string currentStudentLetterGrade = "";
 
-Console.WriteLine("Student\t\tGrade\n");
+Console.WriteLine("Student\t\tExamScore\tOverall Grade\t\tExtra Credit\n");
 
 foreach (string name in studentNames)
 {
@@ -36,30 +36,38 @@ foreach (string name in studentNames)
     studentScores = loganScores;
   else if (currentStudent == "Becky")
     studentScores = beckyScores;
-else if (currentStudent == "Chris")
+  else if (currentStudent == "Chris")
     studentScores = chrisScores;
-else if (currentStudent == "Eric")
+  else if (currentStudent == "Eric")
     studentScores = ericScores;
-else if (currentStudent == "Gregor")
+  else if (currentStudent == "Gregor")
     studentScores = gregorScores;
-else
+  else
     continue;
 
-  int sum = 0;
+  decimal sum = 0;
   decimal studentScore;
 
   int gradeAssigmentes = 0;
-
+  decimal extraCredit = 0;
+  decimal examScore = 0;
   foreach (int score in studentScores)
-  { 
+  {
     gradeAssigmentes++;
     if (gradeAssigmentes <= examAssignments)
+    {
       sum += score;
+      examScore += score;      
+    }      
     else
-      sum += score /10;
+    {
+      sum += (decimal)score / 10;
+    }
   }
-
+  examScore /= examAssignments;
   studentScore = (decimal)sum / examAssignments;
+  extraCredit = studentScore - examScore;
+  
 
   if (studentScore >= 97)
     currentStudentLetterGrade = "A+";
@@ -98,7 +106,7 @@ else
   else
     currentStudentLetterGrade = "F";
 
-  Console.WriteLine(currentStudent + ":\t\t" + studentScore + "\t" + currentStudentLetterGrade);
+  Console.WriteLine(currentStudent + "\t\t" + examScore + "\t\t" + studentScore + "\t" + currentStudentLetterGrade + "\t\t" + (int)examScore+ " "+ "(" + extraCredit + ")");
 
 }
 

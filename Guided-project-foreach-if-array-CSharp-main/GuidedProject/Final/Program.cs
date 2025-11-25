@@ -107,8 +107,7 @@ foreach (string name in studentNames)
     else
         currentStudentLetterGrade = "F";
 
-    // Student         Grade
-    // Sophia:         92.2    A-
+    
     
     Console.WriteLine($"{currentStudent}\t\t{currentStudentGrade}\t{currentStudentLetterGrade}");
 }
