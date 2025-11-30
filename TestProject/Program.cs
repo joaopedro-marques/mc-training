@@ -244,3 +244,52 @@ string finalPhrase = new String(lettersPhrase);
 Console.WriteLine(finalPhrase);
 Console.WriteLine($"'o' appears {letterCount} times.");
 
+//Evaluate booean expressions to make decisions in C#..
+Console.WriteLine(" -----------");
+Console.WriteLine("a" == "A");
+Console.WriteLine("a" == "a");
+Console.WriteLine( 1 == 2);
+
+string myValue = "a";
+Console.WriteLine(myValue == "a");
+
+string value1 = " a";
+string value2 = "A ";
+Console.WriteLine(value1.Trim().ToLower() == value2.Trim().ToLower());
+
+Console.WriteLine(" -----------");
+Console.WriteLine("a" != "A");
+Console.WriteLine("a" != "a");
+Console.WriteLine( 1 != 2);
+
+myValue = "a";
+Console.WriteLine(myValue != "a");
+
+Console.WriteLine("-----------");
+string paragram = "The quinck brom fox jumps over the laze dog.";
+Console.WriteLine(!paragram.Contains("fox"));
+Console.WriteLine(!paragram.Contains("cow"));
+
+Console.WriteLine("-----------");
+//Evaluate purchase discount
+int saleAmount = 1001;
+// int discount = saleAmout > 1000 ? 100 : 50;
+Console.WriteLine($"Discount: {(saleAmount > 1000 ? 100 : 50)}");
+
+//Coin flip
+Console.WriteLine("-----------");
+int coin = random.Next(0, 2);
+string result = coin == 0 ? "heads" : "tails";
+Console.WriteLine($"You flipped {result}");
+
+//Permission
+string permission = "";
+int level = 10;
+if (level > 55)
+  Console.WriteLine("Welcome, Super Admin user.");
+else if (permission.Contains("Manager") && level >= 20)
+  Console.WriteLine("Contact an admin for access");
+else if (permission.Contains("Admin") || permission.Contains("Manager"))
+  Console.WriteLine("Welcom, Admin user.");
+else
+  Console.WriteLine("You do not have sufficient privileges.");
