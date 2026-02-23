@@ -3,6 +3,16 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using ScreenSound.WebAssembly;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+builder.Services.AddTransient<ArtistasAPI>();
+
+
+builder.Services.AddHttpClient("API", client => 
+{
+    client.BaseAddress = new Uri(builder.Configuration["APIServer"]);
+    client.DefaultRequestheaders.Add("Accept", "application/json");
+});
+
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
