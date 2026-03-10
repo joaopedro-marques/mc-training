@@ -1,0 +1,12 @@
+<div class="card-artista">
+    <img src="images/@Artista?.FotoPerfil" class="card-img"/>
+    <div class="card-body">
+      <h4>@Artista?.Nome</h4>
+      <p class="bio">@Artista?.Bio</p>
+      <a class="btn" href="/EditarArtista/@Artista?.Id">Detalhes</a>
+    </div>
+</div>
+@code {
+  [Parameter]
+  public ArtistaResponse Artista {get; set;}
+}
