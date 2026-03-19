@@ -1,47 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
-using Alura.Adopet.Console.Modelos;
+﻿using Alura.Adopet.Console.Modelos;
+using Alura.Adopet.Console.Servicos;
 
-namespace Alura.Adopet.Console.Comandos;
-
-[DocComando(instrucao: "list",
-        documentacao: "adopet list comando que exibe no terminal o conteúdo da base de dados da AdoPet.")]
-internal class List
+namespace Alura.Adopet.Console.Comandos
 {
-    HttpClient client;
-    public List()
+    [DocComando(instrucao: "list",
+      documentacao: "adopet list comando que exibe no terminal o conteúdo cadastrado na base de dados da AdoPet.")]
+    internal class List: IComando
     {
-        client = ConfiguraHttpClient("http://localhost:5057");
-    }
-    public async Task ListaDadosPetsDaAPIAsync()
-    {
-        IEnumerable<Pet>? pets = await ListPetsAsync();
-        System.Console.WriteLine("----- Lista de Pets importados no sistema -----");
-        foreach (var pet in pets)
+        public Task ExecutarAsync(string[] args)
         {
-            System.Console.WriteLine(pet);
+            return this.ListaDadosPetsDaAPIAsync();
         }
-    }
 
-    HttpClient ConfiguraHttpClient(string url)
-    {
-        HttpClient _client = new HttpClient();
-        _client.DefaultRequestHeaders.Accept.Clear();
-        _client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
-        _client.BaseAddress = new Uri(url);
-        return _client;
-    }
+        private async Task ListaDadosPetsDaAPIAsync()
+        {
+            var httpListPet = new HttpClientPet();
+            IEnumerable<Pet>? pets = await httpListPet.ListPetsAsync();
+            System.Console.WriteLine("----- Lista de Pets importados no sistema -----");
+            foreach (var pet in pets)
+            {
+                System.Console.WriteLine(pet);
+            }
+        }
 
-    async Task<IEnumerable<Pet>?> ListPetsAsync()
-    {
-        HttpResponseMessage response = await client.GetAsync("pet/list");
-        return await response.Content.ReadFromJsonAsync<IEnumerable<Pet>>();
     }
 }
-

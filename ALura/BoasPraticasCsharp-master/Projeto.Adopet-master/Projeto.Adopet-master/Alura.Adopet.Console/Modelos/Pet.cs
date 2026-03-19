@@ -19,7 +19,7 @@ namespace Alura.Adopet.Console.Modelos
         }
         public override string ToString()
         {
-            return $"{this.Id} - {this.Nome} - {this.Tipo}";
+            return $"{Id} - {Nome} - {Tipo}";
         }
     }
 }

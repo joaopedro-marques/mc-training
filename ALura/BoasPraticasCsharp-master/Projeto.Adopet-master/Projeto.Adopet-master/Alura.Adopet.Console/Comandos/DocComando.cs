@@ -1,13 +1,21 @@
-namespace Alura.Adopet.Console.Comandos;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-[AttributeUsage(AttributeTargets.Class)]
-class DocComando : System.Attribute
+namespace Alura.Adopet.Console.Comandos
 {
-  public string Instrucao { get; }
-  public string Documentacao { get; }
-  internal DocComando(string instrucao, string documentacao)
-  {
-    Instrucao = instrucao;
-    Documentacao = documentacao;
-  }
+    [AttributeUsage(AttributeTargets.Class)]
+    internal class DocComando : Attribute
+    {
+        public DocComando(string instrucao, string documentacao)
+        {
+            Instrucao = instrucao;
+            Documentacao = documentacao;
+        }
+
+        public string Instrucao { get; }
+        public string Documentacao { get; }
+    }
 }
