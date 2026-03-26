@@ -1,24 +1,22 @@
-﻿using Alura.Adopet.Console;
-using Alura.Adopet.Console.Modelos;
+﻿using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Servicos;
+using Alura.Adopet.Console.Util;
 using FluentResults;
 
 namespace Alura.Adopet.Console.Comandos
 {
     [DocComandoAttribute(instrucao: "list",
       documentacao: "adopet list comando que exibe no terminal o conteúdo cadastrado na base de dados da AdoPet.")]
-    internal class List: IComando
+    public class List: IComando
     {
         private readonly HttpClientPet clientPet;
-        private readonly IConsoleUI consoleUI;
 
-        public List(HttpClientPet clientPet, IConsoleUI consoleUI)
+        public List(HttpClientPet clientPet)
         {
             this.clientPet = clientPet;
-            this.consoleUI = consoleUI;
         }
 
-        public Task<Result> ExecutarAsync(string[] args)
+        public Task<Result> ExecutarAsync()
         {
             return this.ListaDadosPetsDaAPIAsync();
         }
@@ -27,13 +25,8 @@ namespace Alura.Adopet.Console.Comandos
         {
             try
             {
-                IEnumerable<Pet>? pets = await clientPet.ListPetsAsync();
-                consoleUI.WriteLine("----- Lista de Pets importados no sistema -----");
-                foreach (var pet in pets)
-                {
-                    consoleUI.WriteLine(pet.ToString());
-                }
-                return Result.Ok();
+                IEnumerable<Pet>? pets = await clientPet.ListPetsAsync();               
+                return Result.Ok().WithSuccess(new SuccessWithPets(pets,"Listagem de Pet's realizada com sucesso!"));
             }
             catch (Exception exception)
             {

@@ -1,5 +1,4 @@
-﻿using Alura.Adopet.Console;
-using Alura.Adopet.Console.Comandos;
+﻿using Alura.Adopet.Console.Comandos;
 using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Util;
 using Alura.Adopet.Testes.Builder;
@@ -9,13 +8,6 @@ namespace Alura.Adopet.Testes
 {
     public class ImportTest
     {
-        private readonly Mock<IConsoleUI> consoleUIMock;
-
-        public ImportTest()
-        {
-            consoleUIMock = new Mock<IConsoleUI>();
-        }
-
         [Fact]
         public async void QuandoListaVaziaNaoDeveChamarCreatPetAsync()
         {
@@ -25,11 +17,10 @@ namespace Alura.Adopet.Testes
 
             var httpClientPet = HttpClientPetMockBuilder.GetMock();
 
-            var import = new Import(httpClientPet.Object, leitorDeArquivo.Object, consoleUIMock.Object);
-            string[] args = { "import", "lista.csv" };
-
+            var import = new Import(httpClientPet.Object, leitorDeArquivo.Object);
+        
             //Act
-            await import.ExecutarAsync(args);
+            await import.ExecutarAsync();
 
             //Assert
             httpClientPet.Verify(_=>_.CreatePetAsync(It.IsAny<Pet>()),Times.Never);
@@ -45,12 +36,10 @@ namespace Alura.Adopet.Testes
 
             var httpClientPet = HttpClientPetMockBuilder.GetMock();
 
-            string[] args = { "import", "lista.csv" };
-
-            var import = new Import(httpClientPet.Object, leitor.Object, consoleUIMock.Object);
+            var import = new Import(httpClientPet.Object, leitor.Object);
 
             //Act
-             var resultado = await import.ExecutarAsync(args);
+             var resultado = await import.ExecutarAsync();
 
             //Assert
             Assert.True(resultado.IsFailed);
@@ -68,16 +57,18 @@ namespace Alura.Adopet.Testes
 
             var httpClientPet = HttpClientPetMockBuilder.GetMock();
 
-            var import = new Import(httpClientPet.Object, leitorDeArquivo.Object, consoleUIMock.Object);
-            string[] args = { "import", "lista.csv" };
-
+            var import = new Import(httpClientPet.Object, leitorDeArquivo.Object);
+          
             //Act
-            var resultado = await import.ExecutarAsync(args);
+            var resultado = await import.ExecutarAsync();
 
             //Assert
             Assert.True(resultado.IsSuccess);
             var sucesso = (SuccessWithPets)resultado.Successes[0];
             Assert.Equal("Lima",sucesso.Data.First().Nome);
         }
+
+
+
     }
 }

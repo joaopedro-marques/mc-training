@@ -1,5 +1,4 @@
-﻿using Alura.Adopet.Console;
-using Alura.Adopet.Console.Comandos;
+﻿using Alura.Adopet.Console.Comandos;
 using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Servicos;
 using Alura.Adopet.Testes.Builder;
@@ -8,7 +7,7 @@ namespace Alura.Adopet.Testes
 {
     public class ImportIntegrationTest
     {
-    
+   
         [Fact]
         public async void QuandoAPIEstaNoArDeveRetornarListaDePet()
         {
@@ -17,10 +16,9 @@ namespace Alura.Adopet.Testes
             var pet = new Pet(new Guid("456b24f4-19e2-4423-845d-4a80e8854a41"),
                   "Lima", TipoPet.Cachorro); //"456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;1";
             listaDePet.Add(pet);
-            var leitorDeArquivo = LeitorDeArquivosMockBuilder.GetMock(listaDePet);
+            var leitorDeArquivo = LeitorDeArquivosMockBuilder.GetMock(listaDePet);       
               var httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().CreateClient("adopet"));
-            var consoleUI = new ConsoleUI();
-            var import = new Import(httpClientPet,leitorDeArquivo.Object, consoleUI);
+            var import = new Import(httpClientPet,leitorDeArquivo.Object);
             string[] args = { "import", "lista.csv" };
             
             //Act

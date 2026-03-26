@@ -1,5 +1,4 @@
-﻿using Alura.Adopet.Console;
-using Alura.Adopet.Console.Modelos;
+﻿using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Servicos;
 using Alura.Adopet.Console.Util;
 using FluentResults;
@@ -11,33 +10,30 @@ namespace Alura.Adopet.Console.Comandos
     public class Import:IComando
     {
         private readonly HttpClientPet clientPet;
-        private readonly LeitorDeArquivo leitor;
-        private readonly IConsoleUI consoleUI;
 
-        public Import(HttpClientPet clientPet, LeitorDeArquivo leitor, IConsoleUI consoleUI)
+        private readonly LeitorDeArquivo leitor;
+
+        public Import(HttpClientPet clientPet, LeitorDeArquivo leitor)
         {
             this.clientPet = clientPet;
             this.leitor = leitor;
-            this.consoleUI = consoleUI;
         }
 
-        public async Task<Result> ExecutarAsync(string[] args)
+        public async Task<Result> ExecutarAsync()
         {
-            return await this.ImportacaoArquivoPetAsync(caminhoDoArquivoDeImportacao: args[1]);
+            return await this.ImportacaoArquivoPetAsync();
         }
 
-        private async Task<Result> ImportacaoArquivoPetAsync(string caminhoDoArquivoDeImportacao)
+        private async Task<Result> ImportacaoArquivoPetAsync()
         {
             try
             {
                 List<Pet> listaDePet = leitor.RealizaLeitura();
                 foreach (var pet in listaDePet)
-                {
-                   consoleUI.WriteLine(pet.ToString());
-                   await clientPet.CreatePetAsync(pet);
+                {                       
+                   await clientPet.CreatePetAsync(pet);               
                 }
-                consoleUI.WriteSuccess("Importação concluída!");
-                return Result.Ok().WithSuccess(new SuccessWithPets(listaDePet));
+                return Result.Ok().WithSuccess(new SuccessWithPets(listaDePet,"Importação Realizada com Sucesso!"));
             }
             catch (Exception exception)
             {

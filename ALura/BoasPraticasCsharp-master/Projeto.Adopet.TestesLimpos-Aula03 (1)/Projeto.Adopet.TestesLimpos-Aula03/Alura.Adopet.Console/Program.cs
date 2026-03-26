@@ -1,20 +1,22 @@
-﻿using Alura.Adopet.Console.Comandos;
+﻿using Alura.Adopet.Console;
+using Alura.Adopet.Console.Comandos;
 using Alura.Adopet.Console.Servicos;
 using Alura.Adopet.Console.Util;
 
+var consoleUI = new ConsoleUI();
 var httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().CreateClient("adopet"));
 var leitorDeArquivos = new LeitorDeArquivo(caminhoDoArquivoASerLido: args[1]);
 Dictionary<string, IComando> comandosDoSistema = new()
 {
-    {"help",new Help() },
-    {"import",new Import(httpClientPet,leitorDeArquivos)},
-    {"list",new List(httpClientPet) },
-    {"show",new Show(leitorDeArquivos) },
+    {"help",new Help(consoleUI) },
+    {"import",new Import(httpClientPet,leitorDeArquivos, consoleUI)},
+    {"list",new List(httpClientPet, consoleUI) },
+    {"show",new Show(leitorDeArquivos, consoleUI) },
 };
 
-Console.ForegroundColor = ConsoleColor.Green;
+consoleUI.WriteSuccess("Adopet CLI iniciado...");
 try
-{    
+{
     string comando = args[0].Trim();
     if (comandosDoSistema.ContainsKey(comando))
     {
@@ -23,16 +25,16 @@ try
     }
     else
     {
-        Console.WriteLine("Comando inválido!");
-    }         
+        consoleUI.WriteLine("Comando inválido!");
+    }
 }
 catch (Exception ex)
 {
     // mostra a exceção em vermelho
-    Console.ForegroundColor = ConsoleColor.Red;
-    Console.WriteLine($"Aconteceu um exceção: {ex.Message}");
+    consoleUI.WriteError($"Aconteceu uma exceção: {ex.Message}");
 }
 finally
 {
-    Console.ForegroundColor = ConsoleColor.White;
+    consoleUI.ResetColor();
+    consoleUI.Dispose();
 }

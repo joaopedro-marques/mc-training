@@ -1,5 +1,4 @@
-﻿using Alura.Adopet.Console;
-using Alura.Adopet.Console.Comandos;
+﻿using Alura.Adopet.Console.Comandos;
 using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Util;
 using Alura.Adopet.Testes.Builder;
@@ -9,13 +8,6 @@ namespace Alura.Adopet.Testes
 {
     public class ImportTest
     {
-        private readonly Mock<IConsoleUI> consoleUIMock;
-
-        public ImportTest()
-        {
-            consoleUIMock = new Mock<IConsoleUI>();
-        }
-
         [Fact]
         public async void QuandoListaVaziaNaoDeveChamarCreatPetAsync()
         {
@@ -25,7 +17,7 @@ namespace Alura.Adopet.Testes
 
             var httpClientPet = HttpClientPetMockBuilder.GetMock();
 
-            var import = new Import(httpClientPet.Object, leitorDeArquivo.Object, consoleUIMock.Object);
+            var import = new Import(httpClientPet.Object, leitorDeArquivo.Object);
             string[] args = { "import", "lista.csv" };
 
             //Act
@@ -47,7 +39,7 @@ namespace Alura.Adopet.Testes
 
             string[] args = { "import", "lista.csv" };
 
-            var import = new Import(httpClientPet.Object, leitor.Object, consoleUIMock.Object);
+            var import = new Import(httpClientPet.Object, leitor.Object);
 
             //Act
              var resultado = await import.ExecutarAsync(args);
@@ -68,7 +60,7 @@ namespace Alura.Adopet.Testes
 
             var httpClientPet = HttpClientPetMockBuilder.GetMock();
 
-            var import = new Import(httpClientPet.Object, leitorDeArquivo.Object, consoleUIMock.Object);
+            var import = new Import(httpClientPet.Object, leitorDeArquivo.Object);
             string[] args = { "import", "lista.csv" };
 
             //Act
@@ -79,5 +71,8 @@ namespace Alura.Adopet.Testes
             var sucesso = (SuccessWithPets)resultado.Successes[0];
             Assert.Equal("Lima",sucesso.Data.First().Nome);
         }
+
+
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Alura.Adopet.Console.Util;
+﻿using Alura.Adopet.Console;
+using Alura.Adopet.Console.Util;
 using FluentResults;
 
 namespace Alura.Adopet.Console.Comandos
@@ -8,17 +9,19 @@ namespace Alura.Adopet.Console.Comandos
     internal class Show:IComando
     {
         private readonly LeitorDeArquivo leitor;
+        private readonly IConsoleUI consoleUI;
 
-        public Show(LeitorDeArquivo leitor)
+        public Show(LeitorDeArquivo leitor, IConsoleUI consoleUI)
         {
             this.leitor = leitor;
+            this.consoleUI = consoleUI;
         }
 
         public Task<Result> ExecutarAsync(string[] args)
         {
             try
             {
-                this.ExibeConteudoArquivo(caminhoDoArquivoASerExibido: args[1]); 
+                this.ExibeConteudoArquivo(caminhoDoArquivoASerExibido: args[1]);
                 return Task.FromResult(Result.Ok());
 
             }
@@ -29,11 +32,11 @@ namespace Alura.Adopet.Console.Comandos
         }
 
         private void ExibeConteudoArquivo(string caminhoDoArquivoASerExibido)
-        {           
+        {
             var listaDepets = leitor.RealizaLeitura();
             foreach (var pet in listaDepets)
             {
-                System.Console.WriteLine(pet);
+                consoleUI.WriteLine(pet.ToString());
             }
 
 

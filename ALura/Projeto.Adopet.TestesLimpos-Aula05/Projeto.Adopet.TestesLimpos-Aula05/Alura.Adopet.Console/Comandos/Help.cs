@@ -1,5 +1,4 @@
-﻿using Alura.Adopet.Console;
-using Alura.Adopet.Console.Util;
+﻿using Alura.Adopet.Console.Util;
 using FluentResults;
 using System.Reflection;
 
@@ -11,20 +10,19 @@ namespace Alura.Adopet.Console.Comandos
     internal class Help:IComando
     {
         private Dictionary<string, DocComandoAttribute> docs;
-        private readonly IConsoleUI consoleUI;
-
-        public Help(IConsoleUI consoleUI)
+        private string? comando;
+        public Help(string? comando)
         {
-            this.consoleUI = consoleUI;
             docs = DocumentacaoDoSistema.ToDictionary(Assembly.GetExecutingAssembly());
+            this.comando = comando;
         }
 
-        public Task<Result> ExecutarAsync(string[] args)
+        public Task<Result> ExecutarAsync()
         {
             try
             {
-                this.ExibeDocumentacao(parametros: args);
-                return Task.FromResult(Result.Ok());
+                  return Task.FromResult(Result.Ok()
+                    .WithSuccess(new SuccessWithDocs(this.GerarDocumentacao())));
             }
             catch (Exception exception)
             {
@@ -32,30 +30,33 @@ namespace Alura.Adopet.Console.Comandos
             }
         }
 
-        private void ExibeDocumentacao(string[] parametros)
+        private IEnumerable<string> GerarDocumentacao()
         {
+            List<string> resultado = new List<string>();
             // se não passou mais nenhum argumento mostra help de todos os comandos
-            if (parametros.Length == 1)
+            if (this.comando is null)
             {
-                consoleUI.WriteLine($"Adopet (1.0) - Aplicativo de linha de comando (CLI).");
-                consoleUI.WriteLine($"Realiza a importação em lote de um arquivos de pets.");
-                consoleUI.WriteLine($"Comando possíveis: ");
                 foreach (var doc in docs.Values)
                 {
-                    consoleUI.WriteLine(doc.Documentacao);
+                    resultado.Add(doc.Documentacao);
                 }
             }
             // exibe o help daquele comando específico
-            else if (parametros.Length == 2)
+            else
             {
-                string comandoASerExibido = parametros[1];
-                if (docs.ContainsKey(comandoASerExibido))
+  
+                if (docs.ContainsKey(this.comando))
                 {
-                    var comando = docs[comandoASerExibido];
-                    consoleUI.WriteLine(comando.Documentacao);
+                    var comando = docs[this.comando];
+                    resultado.Add(comando.Documentacao);
+                }
+                else
+                {
+                    resultado.Add("Comando não encontrado!");
                 }
 
             }
+            return resultado;
         }
     }
 }
